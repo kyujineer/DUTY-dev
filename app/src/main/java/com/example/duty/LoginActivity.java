@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.multidex.MultiDex;
 
+import com.example.duty.menu.MenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -44,7 +45,40 @@ public class LoginActivity extends AppCompatActivity {
         // onClick Events
 
         //onLoginClick
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // get ID and password
+                final EditText id = (EditText) findViewById(R.id.et_id);
+                final EditText pw = (EditText) findViewById(R.id.et_pw);
 
+                // hi
+                // check if id is available; if true, login; if false, fail login;
+                db.collection("regularUsers")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                // if true
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                                        if (doc.get("ID").equals(id.getText().toString())) {
+                                            // turn page to menu layout
+                                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                                            // move to Activity
+                                            startActivity(intent);
+                                        }
+                                    }
+                                }
+                                // if false
+                                else {
+                                    return;
+                                }
+
+                            }
+                        });
+            }
+        });
         //onRegisterClick
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,45 +89,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-    }
-
-    private void onLoginClick(View view) {
-
-        // get button
-        final Button button = (Button) findViewById(view.getId());
-        // get ID and password
-        final EditText id = (EditText) findViewById(R.id.et_id);
-        final EditText pw = (EditText) findViewById(R.id.et_pw);
-
-        // check if id is available; if true, login; if false, fail login;
-        db.collection("regularUsers")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        // if true
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot doc : task.getResult()) {
-                                if (doc.get("ID").equals(id.getText().toString())) {
-
-                                }
-                            }
-                        }
-                        // if false
-                        else {
-                            return;
-                        }
-
-                    }
-                });
-
-
-    }
-
-    public void onRegisterClick() {
-
-
 
     }
 
