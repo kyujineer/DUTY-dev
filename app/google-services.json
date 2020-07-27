@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "205684542524",
+    "firebase_url": "https://duty-dev-13160.firebaseio.com",
+    "project_id": "duty-dev-13160",
+    "storage_bucket": "duty-dev-13160.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205684542524:android:80a2489e64925cd80ac739",
+        "android_client_info": {
+          "package_name": "com.example.duty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205684542524-lqn7ljqn2f31l9qmgaikb2561d1291ss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa6TbZrK415e2LDkoZasqgu2EIIQfQXc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205684542524-lqn7ljqn2f31l9qmgaikb2561d1291ss.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
