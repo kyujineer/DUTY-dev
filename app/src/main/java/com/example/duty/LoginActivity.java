@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +35,10 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Intent 받아오기
+        Intent intent = getIntent();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -54,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 // hi
                 // check if id is available; if true, login; if false, fail login;
-                db.collection("regularUsers")
+                db.collection(getString(R.string.Collection_regUser))
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -62,11 +67,32 @@ public class LoginActivity extends AppCompatActivity {
                                 // if true
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot doc : task.getResult()) {
-                                        if (doc.get("ID").equals(id.getText().toString())) {
-                                            // turn page to menu layout
-                                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                                            // move to Activity
-                                            startActivity(intent);
+                                        // check if ID is valid
+                                        if (doc.getString(getString(R.string.ID)).equals(id.getText().toString())) {
+                                            // check if PASSWORD is valid
+                                            if (doc.getString(getString(R.string.PASSWORD)).equals(pw.getText().toString())) {
+                                                // turn page to menu layout
+                                                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                                                // hand over user information
+                                                intent.putExtra("ID", doc.getString("ID"));
+                                                intent.putExtra("name", doc.getString("name"));
+                                                intent.putExtra("teamId", doc.getString("teamId"));
+                                                intent.putExtra("teamName", doc.getString("teamName"));
+                                                intent.putExtra("role", doc.getString("role"));
+                                                intent.putExtra("isAdmin", doc.getBoolean("isAdmin"));
+                                                // move to Activity
+                                                startActivity(intent);
+                                            }
+                                            // if PASSWORD is invalid
+                                            else {
+                                                Toast toast = Toast.makeText(LoginActivity.this, "Invalid Password", Toast.LENGTH_LONG);
+                                                toast.show();
+                                            }
+                                        }
+                                        // if ID is invalid
+                                        else {
+                                            Toast toast = Toast.makeText(LoginActivity.this,"Invalid Login ID", Toast.LENGTH_LONG);
+                                            toast.show();
                                         }
                                     }
                                 }

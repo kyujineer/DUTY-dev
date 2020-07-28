@@ -27,7 +27,7 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_menu);
         //아래 메뉴아이콘 클릭시 화면 전환 구현 start
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu_bottom);
         //클릭시 setMenu(i) i 값 바꿔주는 거

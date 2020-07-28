@@ -9,10 +9,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Intent 받아오기
+        Intent intent = getIntent();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Intent intent = getIntent();
+
 
     }
 }

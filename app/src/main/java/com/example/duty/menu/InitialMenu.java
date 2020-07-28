@@ -18,7 +18,7 @@ public class InitialMenu extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.initialmenu, container, false);
+        view = inflater.inflate(R.layout.menu_initial, container, false);
 
         return view;
     }
