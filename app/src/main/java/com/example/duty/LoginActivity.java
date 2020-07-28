@@ -35,6 +35,10 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Intent 받아오기
+        Intent intent = getIntent();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -64,11 +68,18 @@ public class LoginActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot doc : task.getResult()) {
                                         // check if ID is valid
-                                        if (doc.get(getString(R.string.ID)).equals(id.getText().toString())) {
+                                        if (doc.getString(getString(R.string.ID)).equals(id.getText().toString())) {
                                             // check if PASSWORD is valid
-                                            if (doc.get(getString(R.string.PASSWORD)).equals(pw.getText().toString())) {
+                                            if (doc.getString(getString(R.string.PASSWORD)).equals(pw.getText().toString())) {
                                                 // turn page to menu layout
                                                 Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                                                // hand over user information
+                                                intent.putExtra("ID", doc.getString("ID"));
+                                                intent.putExtra("name", doc.getString("name"));
+                                                intent.putExtra("teamId", doc.getString("teamId"));
+                                                intent.putExtra("teamName", doc.getString("teamName"));
+                                                intent.putExtra("role", doc.getString("role"));
+                                                intent.putExtra("isAdmin", doc.getBoolean("isAdmin"));
                                                 // move to Activity
                                                 startActivity(intent);
                                             }
