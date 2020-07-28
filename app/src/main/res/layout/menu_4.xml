@@ -1,14 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="설정 화면"
-        android:textSize="50sp"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="32"
+        android:background="#CBBDF2">
+
+        <ImageView
+            android:id="@+id/user_profile"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/iiiuuu"/>
+<!--        android:onClick="onClick"-->
+
+        <TextView
+            android:id="@+id/tv_userid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/user_profile"
+            android:gravity="left"
+            android:padding="10dp"
+            android:text="아이디"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_useremail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_userid"
+            android:layout_toRightOf="@+id/user_profile"
+            android:gravity="left"
+            android:padding="10dp"
+            android:text="이메일"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_usercode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_useremail"
+            android:layout_toRightOf="@+id/user_profile"
+            android:gravity="left"
+            android:padding="10dp"
+            android:text="고유번호"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_weight="17"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/set_menu1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_baseline_alarm_on_24" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/set_menu1"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="근무"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_weight="17"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/set_menu2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_baseline_alarm_on_24" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/set_menu2"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:text="달력" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_weight="17"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/set_menu3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_baseline_alarm_on_24" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/set_menu3"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:text="알람" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_weight="17"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/set_menu4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_baseline_alarm_on_24" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/set_menu4"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:text="화면" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_weight="17"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/set_menu5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_baseline_alarm_on_24" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/set_menu5"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:text="시스템" />
+
+    </RelativeLayout>
 
 </LinearLayout>
