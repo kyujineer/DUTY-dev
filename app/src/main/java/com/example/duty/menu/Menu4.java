@@ -21,5 +21,8 @@ public class Menu4 extends Fragment {
         view = inflater.inflate(R.layout.menu_4, container, false);
 
         return view;
+
+
     }
 }
+
