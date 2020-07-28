@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 // hi
                 // check if id is available; if true, login; if false, fail login;
-                db.collection("regularUsers")
+                db.collection(getString(R.string.Collection_regUser))
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -62,11 +63,25 @@ public class LoginActivity extends AppCompatActivity {
                                 // if true
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot doc : task.getResult()) {
-                                        if (doc.get("ID").equals(id.getText().toString())) {
-                                            // turn page to menu layout
-                                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                                            // move to Activity
-                                            startActivity(intent);
+                                        // check if ID is valid
+                                        if (doc.get(getString(R.string.ID)).equals(id.getText().toString())) {
+                                            // check if PASSWORD is valid
+                                            if (doc.get(getString(R.string.PASSWORD)).equals(pw.getText().toString())) {
+                                                // turn page to menu layout
+                                                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                                                // move to Activity
+                                                startActivity(intent);
+                                            }
+                                            // if PASSWORD is invalid
+                                            else {
+                                                Toast toast = Toast.makeText(LoginActivity.this, "Invalid Password", Toast.LENGTH_LONG);
+                                                toast.show();
+                                            }
+                                        }
+                                        // if ID is invalid
+                                        else {
+                                            Toast toast = Toast.makeText(LoginActivity.this,"Invalid Login ID", Toast.LENGTH_LONG);
+                                            toast.show();
                                         }
                                     }
                                 }
