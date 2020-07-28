@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">DUTY</string>
+    <string name="ID">ID</string>
+    <string name="PASSWORD">PASSWORD</string>
+    <string name="Collection_regUser">regularUsers</string>
+    <string name="Collection_adminUser">adminUsers</string>
+    <string name="Collection_teams">teams</string>
 </resources>
