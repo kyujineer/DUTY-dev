@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.hardware.camera2"/>
+    <uses-feature android:name="android.hardware.camera2"/>
 
 
     <application
@@ -40,7 +40,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@layout/menu_4_filepaths"/>
+                android:resource="@menu/menu_4_filepaths"/>
         </provider>
     </application>
 
