@@ -85,14 +85,12 @@ public class LoginActivity extends AppCompatActivity {
                                             }
                                             // if PASSWORD is invalid
                                             else {
-                                                Toast toast = Toast.makeText(LoginActivity.this, "Invalid Password", Toast.LENGTH_LONG);
-                                                toast.show();
+                                                Toast.makeText(LoginActivity.this, "Invalid Password", Toast.LENGTH_LONG).show();
                                             }
                                         }
                                         // if ID is invalid
                                         else {
-                                            Toast toast = Toast.makeText(LoginActivity.this,"Invalid Login ID", Toast.LENGTH_LONG);
-                                            toast.show();
+                                            Toast.makeText(LoginActivity.this,"Invalid Login ID", Toast.LENGTH_LONG).show();
                                         }
                                     }
                                 }
