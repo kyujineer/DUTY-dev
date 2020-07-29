@@ -1,7 +1,9 @@
 package com.example.duty;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
 
+public class User implements Parcelable {
 
     // Variable declaration
     private String ID;
@@ -28,24 +30,59 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
-    // public methods
-    protected String getID() {
+    protected User(Parcel in) {
+        ID = in.readString();
+        name = in.readString();
+        teamId = in.readString();
+        teamName = in.readString();
+        role = in.readString();
+        isAdmin = in.readByte() != 0;
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    // protected methods
+    public String getID() {
         return this.ID;
     }
-    protected String getName() {
+    public String getName() {
         return this.name;
     }
-    protected String getTeamId() {
+    public String getTeamId() {
         return this.teamId;
     }
-    protected String getTeamName() {
+    public String getTeamName() {
         return this.teamName;
     }
-    protected String getRole() {
+    public String getRole() {
         return this.role;
     }
-    protected boolean isAdmin() {
+    public boolean isAdmin() {
         return this.isAdmin;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(ID);
+        parcel.writeString(name);
+        parcel.writeString(teamId);
+        parcel.writeString(teamName);
+        parcel.writeString(role);
+        parcel.writeByte((byte) (isAdmin ? 1 : 0));
+    }
 }
