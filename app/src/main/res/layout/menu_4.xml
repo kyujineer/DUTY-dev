@@ -10,7 +10,7 @@
         android:layout_weight="32"
         android:background="#CBBDF2">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/user_profile"
             android:layout_width="100dp"
             android:layout_height="100dp"

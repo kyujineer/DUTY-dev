@@ -13,7 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -43,7 +43,7 @@ public class Menu4 extends Fragment {
     String mCurrentPhotoPath;
     Uri imageURI;
     Uri photoURI, albumURI;
-    ImageButton user_profile;
+    ImageView user_profile;
 
     @Nullable
     @Override
@@ -51,11 +51,12 @@ public class Menu4 extends Fragment {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.menu_4, container, false);
         context = container.getContext();
-        user_profile = (ImageButton)view.findViewById(R.id.user_profile);
+        user_profile = (ImageView)view.findViewById(R.id.user_profile);
         user_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PopupMenu pop = new PopupMenu(getActivity().getApplicationContext(), view);
+                getActivity().getMenuInflater().inflate(R.menu.menu_4_popup, pop.getMenu());
                 pop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
@@ -78,12 +79,6 @@ public class Menu4 extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_4_popup, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == 1) {
@@ -96,6 +91,7 @@ public class Menu4 extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
 
     private void captureCamera() {
         String state = Environment.getExternalStorageState();
