@@ -13,10 +13,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -74,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         }
                                         if (exist == true) {
                                             validateId.setChecked(false);
-                                            Toast.makeText(RegisterActivity.this, "ID Not Available", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(RegisterActivity.this, "ID Not Available", Toast.LENGTH_SHORT).show();
                                         } else {
                                             validateId.setChecked(true);
                                             // Toast.makeText(RegisterActivity.this, "Available ID", Toast.LENGTH_LONG).show();
@@ -145,6 +154,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             // if id exists, change flag
                                             if (doc.getId().equals(teamId.getText().toString())) {
                                                 exist = true;
+                                                teamName.setText(doc.get(getString(R.string.teamName)).toString());
                                                 break;
                                             }
                                         }
@@ -153,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             // Toast.makeText(RegisterActivity.this, "Available Team ID", Toast.LENGTH_LONG).show();
                                         } else {
                                             validateTeamId.setChecked(false);
-                                            Toast.makeText(RegisterActivity.this, "Not Available Team ID", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(RegisterActivity.this, "Not Available Team ID", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
                                         Log.e("Error getting document", " ", task.getException());
@@ -184,7 +194,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         }
                                         if (exist == true) {
                                             validateTeamName.setChecked(false);
-                                            Toast.makeText(RegisterActivity.this, "Team Name Not Available", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(RegisterActivity.this, "Team Name Not Available", Toast.LENGTH_SHORT).show();
                                         }
                                         else {
                                             validateTeamName.setChecked(true);
@@ -223,19 +233,109 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //id, pw, name, role, teamId, teamName
+                // new user entity
+                final Map<String, Object> user = new HashMap<>();
+                user.put(getString(R.string.ID), id.getText().toString());
+                user.put(getString(R.string.PASSWORD), pw.getText().toString());
+                user.put(getString(R.string.isAdmin), isAdmin.isChecked());
+                user.put(getString(R.string.name), name.getText().toString());
+                user.put(getString(R.string.role), role.getText().toString());
+                user.put(getString(R.string.teamId), teamId.getText().toString());
+                user.put(getString(R.string.teamName), teamName.getText().toString());
+
+                // new team
+                final Map<String, Object> team = new HashMap<>();
+                team.put(getString(R.string.teamName), id.getText().toString());
+
                 // if admin user
                 if (isAdmin.isChecked()) {
                     // TODO Do nothing, will implement later.
+
+                    // Add a new team document
+                    db.collection(getString(R.string.Collection_teams))
+                            .add(team)
+                            .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentReference> task) {
+
+                                    // update team id for user
+                                    user.put(getString(R.string.teamId),task.getResult().getId());
+
+                                    // Add a new collection and user to new team
+                                    task.getResult()
+                                            .collection(getString(R.string.teamUsers))
+                                            .add(user)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Log.e("DocumentSnapshot added",  "with ID:"+documentReference.getId());
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.e("Error adding document", " ", e);
+                                                }
+                                            });
+                                }
+                            });
+
+                    // Add a new admin document
+                    db.collection(getString(R.string.Collection_adminUser))
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.e("DocumentSnapshot added",  "with ID:"+documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.e("Error adding document", " ", e);
+                                }
+                            });
                 }
                 // if regular user
                 else {
                     // TODO Do nothing, will implement later.
+
+                    // Add a new document
+                    db.collection(getString(R.string.Collection_regUser))
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.e("DocumentSnapshot added",  "with ID:"+documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.e("Error adding document", " ", e);
+                                }
+                            });
+                    db.collection(getString(R.string.Collection_teams))
+                            .document(teamId.getText().toString())
+                            .collection("users")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.e("DocumentSnapshot added",  "with ID:"+documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.e("Error adding document", " ", e);
+                                }
+                            });
                 }
-
-
                 // Move back to login activity
-                // Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                intent.putExtra("where","fromRegister");
+                startActivity(intent);
             }
         });
 
