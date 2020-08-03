@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         // turn page to menu layout
         intent = new Intent(MainActivity.this, MenuActivity.class);
+        intent.putExtra("user", user);
         // move to Activity
         startActivity(intent);
 
