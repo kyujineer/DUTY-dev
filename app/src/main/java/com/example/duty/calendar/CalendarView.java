@@ -1,15 +1,19 @@
-package com.example.duty;
+package com.example.duty.calendar;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+
+import com.example.duty.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,7 +36,10 @@ public class CalendarView extends LinearLayout {
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.KOREA);
 
     List<Date> dates = new ArrayList<>();
+    List<Events> eventsList = new ArrayList<>();
 
+    GridAdapter gridAdapter;
+    AlertDialog alertDialog;
 
 
 
@@ -40,8 +47,28 @@ public class CalendarView extends LinearLayout {
         super(context);
     }
 
-    public CalendarView(Context context, @Nullable AttributeSet attrs) {
+    public CalendarView(final Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
+        InitializeLayout();
+        SetUpCalendar();
+
+        CurrentDate.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setCancelable(true);
+                final View changeView = LayoutInflater.from(context).inflate(R.layout.calendar_change_month, null);
+                ImageButton previous = changeView.findViewById(R.id.btn_previousMonth);
+                ImageButton next = changeView.findViewById(R.id.btn_nextMonth);
+                final GridView twelveMonth = changeView.findViewById(R.id.twelve_month);
+
+                builder.setView(changeView);
+                alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
+
 
     }
 
@@ -71,6 +98,8 @@ public class CalendarView extends LinearLayout {
             dates.add(monthCalendar.getTime());
             monthCalendar.add(Calendar.DAY_OF_MONTH, 1);
         }
+        gridAdapter = new GridAdapter(context, dates, calendar, eventsList);
+        gridView.setAdapter(gridAdapter);
 
 
 
