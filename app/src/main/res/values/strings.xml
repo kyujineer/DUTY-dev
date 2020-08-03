@@ -2,8 +2,13 @@
     <string name="app_name">DUTY</string>
     <string name="ID">ID</string>
     <string name="PASSWORD">PASSWORD</string>
+    <string name="isAdmin">isAdmin</string>
+    <string name="name">name</string>
+    <string name="role">role</string>
+    <string name="teamId">teamId</string>
     <string name="teamName">teamName</string>
     <string name="Collection_regUser">regularUsers</string>
     <string name="Collection_adminUser">adminUsers</string>
     <string name="Collection_teams">teams</string>
+    <string name="teamUsers">users</string>
 </resources>
