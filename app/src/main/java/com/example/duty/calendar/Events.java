@@ -1,4 +1,4 @@
-package com.example.usercalendar;
+package com.example.duty.calendar;
 
 public class Events {
     String EVENT, TIME, DATE, MONTH, YEAR;

@@ -11,4 +11,5 @@
     <string name="Collection_adminUser">adminUsers</string>
     <string name="Collection_teams">teams</string>
     <string name="teamUsers">users</string>
+    <string name="current_date">Current Date</string>
 </resources>
