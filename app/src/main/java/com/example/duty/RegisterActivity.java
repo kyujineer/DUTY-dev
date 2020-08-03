@@ -247,8 +247,6 @@ public class RegisterActivity extends AppCompatActivity {
                 final Map<String, Object> team = new HashMap<>();
                 team.put(getString(R.string.teamName), id.getText().toString());
 
-                final int a = 1;
-
                 // if admin user
                 if (isAdmin.isChecked()) {
 
