@@ -40,7 +40,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@menu/menu_4_filepaths"/>
+                android:resource="@xml/menu_4_filepaths"/>
         </provider>
     </application>
 

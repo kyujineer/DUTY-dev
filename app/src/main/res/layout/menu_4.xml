@@ -16,7 +16,7 @@
             android:layout_height="100dp"
             android:layout_margin="25dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/ic_baseline_alarm_on_24"/>
+            android:src="@mipmap/iiiuuu"/>
 
         <TextView
             android:id="@+id/tv_userid"
