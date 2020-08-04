@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:background="#C3FF5C9D">
+        android:background="@color/interfaceColor">
 
         <TextView
             android:id="@+id/tv_date"
@@ -38,7 +38,7 @@
         android:orientation="horizontal"
         android:paddingTop="4dp"
         android:paddingBottom="0dp"
-        android:background="#C3FF5C9D">
+        android:background="@color/interfaceColor">
 
         <TextView
             android:layout_width="0dp"
