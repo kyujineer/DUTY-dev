@@ -1,195 +1,154 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="32"
-        android:background="#CBBDF2">
+        android:layout_height="100dp">
 
         <ImageView
             android:id="@+id/user_profile"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorPrimary"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/user_profile"
+            android:layout_toRightOf="@id/user_profile"
+            android:background="@color/colorAccent"
+            android:text="홍길동"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/name"
+            android:layout_below="@id/name"
+            android:layout_marginTop="7dp"
+            android:background="@color/colorAccent"
+            android:text="gildong.hong@snu.ac.kr"
+            android:textColor="#ff0000" />
+
+        <ImageView
+            android:id="@+id/alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorAccent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_margin="25dp"
-            android:adjustViewBounds="true"
-            android:src="@mipmap/iiiuuu"/>
-
-        <TextView
-            android:id="@+id/tv_userid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/user_profile"
-            android:gravity="left"
-            android:padding="10dp"
-            android:text="아이디"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_useremail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_userid"
-            android:layout_toRightOf="@+id/user_profile"
-            android:gravity="left"
-            android:padding="10dp"
-            android:text="이메일"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_usercode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_useremail"
-            android:layout_toRightOf="@+id/user_profile"
-            android:gravity="left"
-            android:padding="10dp"
-            android:text="고유번호"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_weight="17"
-        android:background="#ffffff">
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher_round" />
 
         <ImageView
-            android:id="@+id/set_menu1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_baseline_alarm_on_24" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:layout_toRightOf="@+id/set_menu1"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:text="근무"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_weight="17"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#ffffff">
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher_round" />
 
         <ImageView
-            android:id="@+id/set_menu2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_baseline_alarm_on_24" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:layout_toRightOf="@+id/set_menu2"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:text="달력" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_weight="17"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#ffffff">
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher_round" />
 
         <ImageView
-            android:id="@+id/set_menu3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_baseline_alarm_on_24" />
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher_round" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:layout_toRightOf="@+id/set_menu3"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:text="알람" />
+    </LinearLayout>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_weight="17"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#ffffff">
+        android:layout_height="100dp"
+        android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/set_menu4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_baseline_alarm_on_24" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:layout_toRightOf="@+id/set_menu4"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:text="화면" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_weight="17"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#ffffff">
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher_round" />
 
         <ImageView
-            android:id="@+id/set_menu5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_baseline_alarm_on_24" />
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher_round" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:layout_toRightOf="@+id/set_menu5"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:text="시스템" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher_round" />
 
-    </RelativeLayout>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher_round" />
 
+    </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="전체보기"
+        android:textColor="#ff0000" />
 
 </LinearLayout>
+
+
