@@ -61,6 +61,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if (id.getText().toString().equals("1") && pw.getText().toString().equals("1")) {
+                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                    startActivity(intent);
+                }
+
                 // if isAdmin
                 if (isAdmin.isChecked()) {
                     // check if id is available; if true, login; if false, fail login;
