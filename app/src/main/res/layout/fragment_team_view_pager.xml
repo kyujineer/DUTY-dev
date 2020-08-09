@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".team.TeamViewPagerFragment"
+    android:orientation="vertical">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:itemTextColor="#000000"
+        app:menu="@menu/team_navigation_menu"
+        app:tabIndicatorColor="#03A9F4"
+        app:tabSelectedTextColor="#000000"
+        app:tabTextColor="#57000000">
+
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="schedule" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_posts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="posts" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="settings" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+</LinearLayout>
