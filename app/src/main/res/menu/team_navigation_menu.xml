@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_team0"
+        android:enabled="true"
+        android:title="Home" />
+    <item
+        android:id="@+id/menu_team1"
+        android:enabled="true"
+        android:title="Calendar" />
+    <item
+        android:id="@+id/menu_team2"
+        android:enabled="true"
+        android:title="Post" />
+    <item
+        android:id="@+id/menu_team3"
+        android:enabled="true"
+        android:title="Settings" />
+</menu>
