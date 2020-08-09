@@ -106,6 +106,7 @@ public class CalendarView extends LinearLayout {
             }
         });
         // End
+        /* 원래 gridView onItem Click 시 띄우는 것 위치 해 있던 곳.. menu 2 로 이사갔음
 
         //달력 날짜 클릭시 이벤트 화면 띄워주기 Start
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -142,6 +143,10 @@ public class CalendarView extends LinearLayout {
 
             }
         });
+        */
+
+
+
     }
 
 
@@ -171,11 +176,17 @@ public class CalendarView extends LinearLayout {
         gridAdapter = new GridAdapter(context, dates, calendar, eventsList);
         gridView.setAdapter(gridAdapter);
 
-
-
-
     }
 
 
+    public GridView getGridView() {
+        return gridView;
+    }
+    public List<Date> getDates() {
+        return dates;
+    }
+    public SimpleDateFormat getChangeDateFormat() {
+        return changeDateFormat;
+    }
 
 }
