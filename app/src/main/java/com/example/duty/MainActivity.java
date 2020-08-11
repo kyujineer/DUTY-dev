@@ -4,9 +4,12 @@ package com.example.duty;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.duty.menu.Menu1_frag1;
 import com.example.duty.menu.MenuActivity;
 
 import java.io.Serializable;
