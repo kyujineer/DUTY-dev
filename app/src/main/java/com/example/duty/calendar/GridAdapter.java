@@ -17,7 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-
+// 이곳은 달력안에 들어가는 1~30일 에 대해 설정할 수 있슴... 
 public class GridAdapter extends ArrayAdapter {
 
     List<Date> dates;
@@ -25,6 +25,7 @@ public class GridAdapter extends ArrayAdapter {
     List<Events> events;
     LayoutInflater inflater;
     TextView calendar_day;
+    TextView events_day;
 
     public GridAdapter(@NonNull Context context, List<Date> dates, Calendar currentDate, List<Events> events) {
         super(context, R.layout.calendar_layout);
@@ -65,7 +66,7 @@ public class GridAdapter extends ArrayAdapter {
         }
         // 현 월만 색이나 다른 걸로 표현 하기위 한 구문
 
-
+        // 날짜 표기하는 text view
         calendar_day = (TextView) view.findViewById(R.id.calendar_day);
 
         if(displayMonth == currentMonth && displayYear == currentYear) {
@@ -83,6 +84,15 @@ public class GridAdapter extends ArrayAdapter {
         }
 
         calendar_day.setText(String.valueOf(DayNo));
+
+        //D, N, E, O 표기하는 text view 항목.
+        events_day = (TextView) view.findViewById(R.id.events_id);
+        if((DayNo % 2) == 1) {
+            events_day.setText("D");
+        } else {
+            events_day.setText("O");
+        }
+
 
         return view;
 

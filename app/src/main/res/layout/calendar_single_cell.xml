@@ -20,7 +20,7 @@
         android:id="@+id/events_id"
         android:textSize="9sp"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:layout_gravity="center"/>
 
 
