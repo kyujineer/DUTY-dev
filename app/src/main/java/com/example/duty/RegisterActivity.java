@@ -249,7 +249,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                 // if admin user
                 if (isAdmin.isChecked()) {
-                    // TODO Do nothing, will implement later.
 
                     // Add a new team document
                     db.collection(getString(R.string.Collection_teams))
@@ -258,12 +257,33 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentReference> task) {
 
+                                    Log.e("DocumentSnapshot added",  "New Team with ID:"+task.getResult().getId());
+
                                     // update team id for user
-                                    user.put(getString(R.string.teamId),task.getResult().getId());
+                                    user.put(getString(R.string.teamId), task.getResult().getId());
+
+                                    // debugging
+                                    // Log.e("Team Id debugging",  "team id:"+user.get("teamId"));
 
                                     // Add a new collection and user to new team
                                     task.getResult()
                                             .collection(getString(R.string.teamUsers))
+                                            .add(user)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Log.e("DocumentSnapshot added",  "New Admin User for New Team with ID:"+documentReference.getId());
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.e("Error adding document", " ", e);
+                                                }
+                                            });
+
+                                    // Add a new admin document
+                                    db.collection(getString(R.string.Collection_adminUser))
                                             .add(user)
                                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                 @Override
@@ -279,26 +299,9 @@ public class RegisterActivity extends AppCompatActivity {
                                             });
                                 }
                             });
-
-                    // Add a new admin document
-                    db.collection(getString(R.string.Collection_adminUser))
-                            .add(user)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Log.e("DocumentSnapshot added",  "with ID:"+documentReference.getId());
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.e("Error adding document", " ", e);
-                                }
-                            });
                 }
                 // if regular user
                 else {
-                    // TODO Do nothing, will implement later.
 
                     // Add a new document
                     db.collection(getString(R.string.Collection_regUser))

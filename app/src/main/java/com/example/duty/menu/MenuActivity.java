@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -25,9 +26,12 @@ public class MenuActivity extends AppCompatActivity {
     private Menu4 menu4;
     //바텀네비게이션 선언 end
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Intent 받아오기
+        Intent intent = getIntent();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         //아래 메뉴아이콘 클릭시 화면 전환 구현 start

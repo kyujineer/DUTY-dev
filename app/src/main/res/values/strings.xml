@@ -11,5 +11,7 @@
     <string name="Collection_adminUser">adminUsers</string>
     <string name="Collection_teams">teams</string>
     <string name="teamUsers">users</string>
+    <string name="current_date">Current Date</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
