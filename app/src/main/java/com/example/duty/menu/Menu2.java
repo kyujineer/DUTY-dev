@@ -19,27 +19,64 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.duty.R;
+import com.example.duty.User;
 import com.example.duty.calendar.CalendarView;
 
 import java.util.Calendar;
 
 public class Menu2 extends Fragment {
 
-    View view;
     CalendarView calendarView;
     Context context;
     AlertDialog alertDialog;
 
     String [] List_Name = {"이반석", "정규진", "임주영"};
 
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_USER = "argUser";
+
+    // TODO: Rename and change types of parameters
+    private User user;
+
+    public Menu2() {
+    }
+
+    public static Menu2 newInstance(User argUser) {
+        Menu2 fragment = new Menu2();
+        Bundle args = new Bundle();
+        args.putParcelable(ARG_USER, argUser);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            user = getArguments().getParcelable(ARG_USER);
+        }
+        /*
+
+        Log.e("Menu1","debug start");
+        Log.e("user", "*****onCreate: "+ user.getID());
+        Log.e("user", "*****onCreate: "+ user.getName());
+        Log.e("user", "*****onCreate: "+ user.getTeamId());
+        Log.e("user", "*****onCreate: "+ user.getTeamName());
+        Log.e("user", "*****onCreate: "+ user.getRole());
+        Log.e("user", "*****onCreate: "+ user.isAdmin());
+        Log.e("Menu1","debug end");
+
+         */
+    }
+
     @SuppressLint("ResourceType")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.calendar_main, container, false);
-
-        return view;
+        return inflater.inflate(R.layout.calendar_main, container, false);
     }
+
     //onViewCreated 통한 그리드뷰 클릭시 화면 띄우는 것 Calanedar View class에서 menu 2 로 올김
     // 중요한 건 view.getcontext 는 calandar view 의 context 고 그냥 context 는 adapter의 context?
     @Override
