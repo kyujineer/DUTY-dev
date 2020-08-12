@@ -6,8 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.duty.menu.MenuActivity;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.io.Serializable;
 
@@ -30,6 +34,19 @@ public class MainActivity extends AppCompatActivity {
                 intent.getStringExtra("role"),
                 intent.getBooleanExtra("isAdmin",false)
         ); // 고칠예정
+
+        /*
+
+        Log.e("MainActivity","debug start");
+        Log.e("user", "*****onCreate: "+ user.getID());
+        Log.e("user", "*****onCreate: "+ user.getName());
+        Log.e("user", "*****onCreate: "+ user.getTeamId());
+        Log.e("user", "*****onCreate: "+ user.getTeamName());
+        Log.e("user", "*****onCreate: "+ user.getRole());
+        Log.e("user", "*****onCreate: "+ user.isAdmin());
+        Log.e("MainActivity","debug end");
+
+         */
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

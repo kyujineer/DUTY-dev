@@ -13,7 +13,7 @@ public class User implements Parcelable {
     private String role;
     private boolean isAdmin;
 
-    User() {
+    public User() {
         this.ID = "Guest";
         this.name = "Guest "+String.valueOf(Math.random()*100);
         this.teamId = "No Team Id";
@@ -21,7 +21,7 @@ public class User implements Parcelable {
         this.role = "Guest";
         this.isAdmin = false;
     }
-    User(String ID, String name, String teamId, String teamName, String role, boolean isAdmin) {
+    public User(String ID, String name, String teamId, String teamName, String role, boolean isAdmin) {
         this.ID = ID;
         this.name = name;
         this.teamId = teamId;
@@ -30,7 +30,7 @@ public class User implements Parcelable {
         this.isAdmin = isAdmin;
     }
 
-    protected User(Parcel in) {
+    public User(Parcel in) {
         ID = in.readString();
         name = in.readString();
         teamId = in.readString();
@@ -85,4 +85,7 @@ public class User implements Parcelable {
         parcel.writeString(role);
         parcel.writeByte((byte) (isAdmin ? 1 : 0));
     }
+
+
+
 }
