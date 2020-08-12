@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.duty.R;
+import com.example.duty.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {
@@ -23,12 +24,15 @@ public class MenuActivity extends AppCompatActivity {
     private Menu3 menu3;
     private Menu4 menu4;
     //바텀네비게이션 선언 end
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         // Intent 받아오기
         Intent intent = getIntent();
+
+        user = intent.getParcelableExtra("user");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
@@ -55,10 +59,10 @@ public class MenuActivity extends AppCompatActivity {
                 return true;
             }
         });
-        menu1 = new Menu1();
-        menu2 = new Menu2();
-        menu3 = new Menu3();
-        menu4 = new Menu4();
+        menu1 = Menu1.newInstance(user);
+        menu2 = Menu2.newInstance(user);
+        menu3 = Menu3.newInstance(user);
+        menu4 = Menu4.newInstance(user);
         initialMenu = new InitialMenu();
         setMenu(0);
         //아래 메뉴아이콘 클릭시 화면 전환 구현 end
