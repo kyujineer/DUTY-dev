@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.duty.R;
+import com.example.duty.User;
 import com.example.duty.calendar.CalendarView;
 
 import java.util.Calendar;
@@ -32,13 +33,37 @@ public class Menu2 extends Fragment {
 
     String [] List_Name = {"이반석", "정규진", "임주영"};
 
-    @SuppressLint("ResourceType")
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_USER = "argUser";
+
+    private User user;
+
+    public Menu2() {
+        // Required empty public constructor
+    }
+
+    // TODO: Rename and change types and number of parameters
+    public static Menu2 newInstance(User user) {
+        Menu2 fragment = new Menu2();
+        Bundle args = new Bundle();
+        args.putParcelable(ARG_USER, user);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            user = getArguments().getParcelable(ARG_USER);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.calendar_main, container, false);
-
-        return view;
+        return inflater.inflate(R.layout.calendar_main, container, false);
     }
     //onViewCreated 통한 그리드뷰 클릭시 화면 띄우는 것 Calanedar View class에서 menu 2 로 올김
     // 중요한 건 view.getcontext 는 calandar view 의 context 고 그냥 context 는 adapter의 context?
