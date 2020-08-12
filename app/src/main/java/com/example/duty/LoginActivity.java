@@ -63,14 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 // for testing
                 if (id.getText().toString().equals("1") && pw.getText().toString().equals("1")) {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    // hand over user information
-                    intent.putExtra(getString(R.string.ID), "testUserId");
-                    intent.putExtra(getString(R.string.name), "testUserName");
-                    intent.putExtra(getString(R.string.teamId), "testUserTeamId");
-                    intent.putExtra(getString(R.string.teamName), "testUserTeamName");
-                    intent.putExtra(getString(R.string.role), "testUserRole");
-                    intent.putExtra(getString(R.string.isAdmin), false);
+                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                     startActivity(intent);
                 }
 
@@ -89,10 +82,10 @@ public class LoginActivity extends AppCompatActivity {
                                             // check if PASSWORD is valid
                                             if (doc.getString(getString(R.string.PASSWORD)).equals(pw.getText().toString())) {
                                                 // turn page to menu layout
-                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                                                 // hand over user information
                                                 intent.putExtra(getString(R.string.ID), doc.getString("ID"));
-                                                intent.putExtra(getString(R.string.name), doc.getString("name"));
+                                                intent.putExtra(getString(R.string.PASSWORD), doc.getString("name"));
                                                 intent.putExtra(getString(R.string.teamId), doc.getString("teamId"));
                                                 intent.putExtra(getString(R.string.teamName), doc.getString("teamName"));
                                                 intent.putExtra(getString(R.string.role), doc.getString("role"));
@@ -108,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                     // if false
                                     else {
-                                        Toast.makeText(LoginActivity.this, "Invalid Admin ID", Toast.LENGTH_SHORT).show();
                                         return;
                                     }
 
@@ -130,10 +122,10 @@ public class LoginActivity extends AppCompatActivity {
                                             // check if PASSWORD is valid
                                             if (doc.getString(getString(R.string.PASSWORD)).equals(pw.getText().toString())) {
                                                 // turn page to menu layout
-                                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                                                 // hand over user information
                                                 intent.putExtra(getString(R.string.ID), doc.getString("ID"));
-                                                intent.putExtra(getString(R.string.name), doc.getString("name"));
+                                                intent.putExtra(getString(R.string.PASSWORD), doc.getString("name"));
                                                 intent.putExtra(getString(R.string.teamId), doc.getString("teamId"));
                                                 intent.putExtra(getString(R.string.teamName), doc.getString("teamName"));
                                                 intent.putExtra(getString(R.string.role), doc.getString("role"));
@@ -149,7 +141,6 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                     // if false
                                     else {
-                                        Toast.makeText(LoginActivity.this, "Invalid ID", Toast.LENGTH_SHORT).show();
                                         return;
                                     }
 
