@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fl_2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu.Menu1_frag1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#C9E4D1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_menu1_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:layout_margin="15dp"
+            android:text="전번초"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="아이유 \n\n아이유2 \n\n아이유3 \n\n아이유4 \n\n아이유5 \n\n아이유6 \n\n아이유7"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_below="@+id/tv_menu1_2"/>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

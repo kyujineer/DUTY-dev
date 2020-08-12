@@ -20,6 +20,8 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {
+
+
     //바텀네비게이션 선언 start
     private BottomNavigationView bottomNavigationView; // 바텀 네비게이션
     private FragmentManager fm;
