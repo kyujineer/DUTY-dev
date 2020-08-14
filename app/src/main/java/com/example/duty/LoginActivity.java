@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (isAdmin.isChecked()) {
                     // check if id is available; if true, login; if false, fail login;
                     db.collection(getString(R.string.Collection_adminUser))
-                            .whereEqualTo(getString(R.string.ID),id.getText().toString())
+                            .whereEqualTo(getString(R.string.ID), id.getText().toString())
                             .get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     // check if id is available; if true, login; if false, fail login;
                     db.collection(getString(R.string.Collection_regUser))
-                            .whereEqualTo(getString(R.string.ID),id.getText().toString())
+                            .whereEqualTo(getString(R.string.ID), id.getText().toString())
                             .get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
@@ -168,13 +168,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
     }
-
-
-
-
-
-
 
 
 }

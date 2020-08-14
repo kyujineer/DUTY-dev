@@ -2,15 +2,14 @@ package com.example.duty;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 
 import com.example.duty.menu.MenuActivity;
-
-import java.io.Serializable;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.getStringExtra("teamId"),
                 intent.getStringExtra("teamName"),
                 intent.getStringExtra("role"),
-                intent.getBooleanExtra("isAdmin",false)
+                intent.getBooleanExtra("isAdmin", false)
         ); // 고칠예정
 
         super.onCreate(savedInstanceState);

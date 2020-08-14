@@ -2,11 +2,14 @@ package com.example.duty.menu;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.duty.R;
@@ -66,8 +69,8 @@ public class MenuActivity extends AppCompatActivity {
         initialMenu = new InitialMenu();
         setMenu(0);
         //아래 메뉴아이콘 클릭시 화면 전환 구현 end
-    }
 
+    }
     private void setMenu(int i) {
         //메뉴아이콘 클릭에 대한 구문
         fm = getSupportFragmentManager();
@@ -96,5 +99,15 @@ public class MenuActivity extends AppCompatActivity {
                 break;
         }
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        return true;
     }
 }
