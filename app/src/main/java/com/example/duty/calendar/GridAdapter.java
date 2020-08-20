@@ -69,29 +69,31 @@ public class GridAdapter extends ArrayAdapter {
         // 날짜 표기하는 text view
         calendar_day = (TextView) view.findViewById(R.id.calendar_day);
 
-        if(displayMonth == currentMonth && displayYear == currentYear) {
-            calendar_day.setTextColor(getContext().getResources().getColor(R.color.colorBlack));
-        }
-        else {
-            view.setBackgroundColor(Color.parseColor("#cccccc"));
-        }
-        // 토요일 일요일 색상 바꾸기!
-        if(weekDay == Calendar.SUNDAY) {
-            calendar_day.setTextColor(getContext().getResources().getColor(R.color.colorSun));
-        }
-        else if(weekDay == Calendar.SATURDAY) {
-            calendar_day.setTextColor(getContext().getResources().getColor(R.color.colorSat));
-        }
+            if(displayMonth == currentMonth && displayYear == currentYear) {
+                calendar_day.setTextColor(getContext().getResources().getColor(R.color.colorBlack));
+            }
+            else {
+                view.setBackgroundColor(Color.parseColor("#cccccc"));
+            }
+            // 토요일 일요일 색상 바꾸기!
+            if(weekDay == Calendar.SUNDAY) {
+                calendar_day.setTextColor(getContext().getResources().getColor(R.color.colorSun));
+            }
+            else if(weekDay == Calendar.SATURDAY) {
+                calendar_day.setTextColor(getContext().getResources().getColor(R.color.colorSat));
+            }
 
         calendar_day.setText(String.valueOf(DayNo));
 
         //D, N, E, O 표기하는 text view 항목.
         events_day = (TextView) view.findViewById(R.id.events_id);
-        if((DayNo % 2) == 1) {
-            events_day.setText("D");
-        } else {
-            events_day.setText("O");
-        }
+            if(Condition.getCondition() == 0) {
+                if((DayNo % 2) == 1) {
+                    events_day.setText("D");
+                } else {
+                    events_day.setText("O");
+                }
+            }
 
 
         return view;
@@ -116,4 +118,6 @@ public class GridAdapter extends ArrayAdapter {
         return dates.get(position);
 
     }
+
+
 }
