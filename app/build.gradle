@@ -40,7 +40,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
     // ads
-    implementation 'com.google.android.gms:play-services-ads:19.3.0'
+    //implementation 'com.google.android.gms:play-services-ads:19.3.0'
 
     // implementation 'com.android.volley:volley:1.1.1'
     // firebase libraries
