@@ -35,8 +35,6 @@
                 android:text="Button"
                 android:visibility="visible" />
 
-
-
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
@@ -54,11 +52,15 @@
 
     </LinearLayout>
 
+    <!-- android:name="com.example.duty.team.TeamViewPagerFragment"-->
     <fragment
         android:id="@+id/fragment"
-        android:name="com.example.duty.team.TeamViewPagerFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:name="com.example.duty.team.TeamPrototypeFragment">
+
+    </fragment>
+
 
 
 </LinearLayout>
