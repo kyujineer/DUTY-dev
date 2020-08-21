@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.duty.R;
@@ -17,6 +17,8 @@ import com.example.duty.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {
+
+    private User user;
     //바텀네비게이션 선언 start
     private BottomNavigationView bottomNavigationView; // 바텀 네비게이션
     private FragmentManager fm;
@@ -27,7 +29,10 @@ public class MenuActivity extends AppCompatActivity {
     private Menu3 menu3;
     private Menu4 menu4;
     //바텀네비게이션 선언 end
-    private User user;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    //Toolbar RecyclerView Variables Declaration
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +75,9 @@ public class MenuActivity extends AppCompatActivity {
         setMenu(0);
         //아래 메뉴아이콘 클릭시 화면 전환 구현 end
 
+
     }
+
     private void setMenu(int i) {
         //메뉴아이콘 클릭에 대한 구문
         fm = getSupportFragmentManager();
@@ -98,16 +105,29 @@ public class MenuActivity extends AppCompatActivity {
                 ft.commit();
                 break;
         }
-
+        // Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // label 비활성화
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
     }
 
+    // 상단 툴바
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.tb_feed:
+                Intent intent = new Intent(MenuActivity.this , Toolbar_feed_activity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
