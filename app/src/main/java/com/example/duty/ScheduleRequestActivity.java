@@ -2,12 +2,14 @@ package com.example.duty;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +21,13 @@ import android.widget.Toast;
 
 import com.example.duty.calendar.CalendarView;
 import com.example.duty.calendar.Condition;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -32,6 +36,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -55,7 +60,7 @@ public class ScheduleRequestActivity extends AppCompatActivity {
 
     // Firebase
     FirebaseFirestore firebaseFirestore;
-    final Map<String, Object> existingDocument = new HashMap<>();
+    Map<String, Object> existingDocument;
     boolean exists;
     String existingId;
 
@@ -98,7 +103,7 @@ public class ScheduleRequestActivity extends AppCompatActivity {
         firebaseFirestore.collection(getString(R.string.Collection_regUser))
                 .document(user.getDocumentId())
                 .collection(getString(R.string.Collection_dutyRequest))
-                .whereEqualTo("Month",calendarView.getCurrentMonth())
+                .whereEqualTo("Month",calendarView.getCurrentMonth()+1)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -106,8 +111,27 @@ public class ScheduleRequestActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             if (task.getResult().isEmpty()) exists = false;
                             else {
-                                existingId = task.getResult().getDocuments().get(0).getId();
+                                DocumentSnapshot doc = task.getResult().getDocuments().get(0);
+                                existingId = doc.getId();
+                                existingDocument = doc.getData();
+                                List<String> duty = (List<String>) existingDocument.get("duty");
+                                Log.e("**********duty list", duty.toString());
+
+                                int size = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+                                int beginFrom = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+
+                                Log.e("***begin for", "");
+                                int index = 0;
+                                for (int i = beginFrom; i < size+beginFrom; i++) {
+                                    ViewGroup cell = (ViewGroup) calendarView.getGridView().getChildAt(i);
+                                    TextView event = cell.findViewById(R.id.events_id);
+                                    event.setText(duty.get(index));
+                                    Log.e("*******duty",duty.get(index));
+                                    index++;
+                                }
+
                                 exists = true;
+                                Log.e("*****Fetching Doc", existingDocument.toString());
                             }
                         }
                         else {
@@ -179,8 +203,6 @@ public class ScheduleRequestActivity extends AppCompatActivity {
                 }
                 else {
 
-                    String currentMonthDocumentId;
-
                     Log.e("*************","begin");
 
                     if (exists) {
@@ -230,7 +252,6 @@ public class ScheduleRequestActivity extends AppCompatActivity {
                     }
                 }
             }
-
         });
         //제출 버튼 눌렀을시
         btn_submit.setOnClickListener(new View.OnClickListener() {
