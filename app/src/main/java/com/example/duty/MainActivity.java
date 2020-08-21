@@ -10,9 +10,6 @@ import android.util.Log;
 
 import com.example.duty.menu.MenuActivity;
 
-import java.io.Serializable;
-
-
 public class MainActivity extends AppCompatActivity {
 
     User user;

@@ -65,6 +65,7 @@ public class Menu1 extends Fragment {
         return inflater.inflate(R.layout.menu_1, container, false);
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
