@@ -23,6 +23,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -247,6 +248,12 @@ public class RegisterActivity extends AppCompatActivity {
                 final Map<String, Object> team = new HashMap<>();
                 team.put(getString(R.string.teamName), id.getText().toString());
 
+                // new dutyRequest
+                final Map<String, Object> dutyRequest = new HashMap<>();
+                dutyRequest.put("Month","");
+                dutyRequest.put("Year","");
+                dutyRequest.put("duty",new ArrayList<>());
+
                 // if admin user
                 if (isAdmin.isChecked()) {
 
@@ -316,6 +323,25 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Log.e("Error adding document", " ", e);
+                                }
+                            })
+                            .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentReference> task) {
+                                    task.getResult().collection("dutyRequest")
+                                            .add(dutyRequest)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Log.e("DocumentSnapshot added",  "with ID:"+documentReference.getId());
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.e("Error adding document", " ", e);
+                                                }
+                                            });
                                 }
                             });
                     db.collection(getString(R.string.Collection_teams))

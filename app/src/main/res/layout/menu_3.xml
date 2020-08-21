@@ -52,7 +52,16 @@
 
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/menu3_frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+
     <!-- android:name="com.example.duty.team.TeamViewPagerFragment"-->
+    <!--
     <fragment
         android:id="@+id/fragment"
         android:layout_width="match_parent"
@@ -60,7 +69,7 @@
         android:name="com.example.duty.team.TeamPrototypeFragment">
 
     </fragment>
-
+    -->
 
 
 </LinearLayout>
