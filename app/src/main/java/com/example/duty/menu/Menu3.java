@@ -9,9 +9,12 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.duty.R;
 import com.example.duty.User;
+import com.example.duty.team.TeamPrototypeFragment;
 
 public class Menu3 extends Fragment {
 
@@ -20,6 +23,8 @@ public class Menu3 extends Fragment {
     private static final String ARG_USER = "argUser";
 
     private User user;
+
+    FragmentTransaction fragmentTransaction;
 
     public Menu3() {
         // Required empty public constructor
@@ -40,6 +45,11 @@ public class Menu3 extends Fragment {
         if (getArguments() != null) {
             user = getArguments().getParcelable(ARG_USER);
         }
+
+        fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.menu3_frameLayout, TeamPrototypeFragment.newInstance(user));
+        fragmentTransaction.commit();
+
     }
 
     @Nullable
@@ -51,6 +61,9 @@ public class Menu3 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+
     }
 
 }

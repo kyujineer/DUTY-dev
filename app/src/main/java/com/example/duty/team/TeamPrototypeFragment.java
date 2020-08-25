@@ -3,14 +3,19 @@ package com.example.duty.team;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.duty.R;
+import com.example.duty.ScheduleRequestActivity;
+import com.example.duty.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,34 +24,25 @@ import com.example.duty.R;
  */
 public class TeamPrototypeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_USER = "argUser";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Button btn_request;
+    private User user;
+
+    // Variable declaration
+    Button btn_request, btn_create, btn_calendar;
 
     public TeamPrototypeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TeamPrototypeFragment.
-     */
     // TODO: Rename and change types and number of parameters
-    public static TeamPrototypeFragment newInstance(String param1, String param2) {
+    public static TeamPrototypeFragment newInstance(User user) {
         TeamPrototypeFragment fragment = new TeamPrototypeFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable(ARG_USER, user);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,8 +51,7 @@ public class TeamPrototypeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            user = getArguments().getParcelable(ARG_USER);
         }
 
     }
@@ -64,20 +59,42 @@ public class TeamPrototypeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_team_prototype, container, false);
 
+
+
+        return inflater.inflate(R.layout.fragment_team_prototype, container, false);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // button initialization
         btn_request = (Button) view.findViewById(R.id.btn_request);
+        btn_create = (Button) view.findViewById(R.id.btn_create);
+        btn_calendar = (Button) view.findViewById(R.id.btn_calendar);
+
         btn_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ScheduleRequestActivity.class);
+                intent.putExtra("user", user);
+                // move to Activity
+                startActivity(intent);
+            }
+        });
+
+        btn_calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), TeamCalendarActivity.class);
+                intent.putExtra("user", user);
 
                 startActivity(intent);
             }
         });
 
-        return view;
 
     }
 }

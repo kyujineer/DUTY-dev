@@ -68,7 +68,6 @@ public class TestActivity extends AppCompatActivity {
         calendarView.getGridView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
                 TextView textVIew = (TextView) view.findViewById(R.id.events_id);
                 if(shiftKind == 0) {
                     textVIew.setText("Day");

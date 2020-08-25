@@ -96,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 intent.putExtra(getString(R.string.teamName), doc.getString("teamName"));
                                                 intent.putExtra(getString(R.string.role), doc.getString("role"));
                                                 intent.putExtra(getString(R.string.isAdmin), doc.getBoolean("isAdmin"));
+                                                intent.putExtra(getString(R.string.documentId), doc.getId());
                                                 // move to Activity
                                                 startActivity(intent);
                                             }
@@ -137,6 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 intent.putExtra(getString(R.string.teamName), doc.getString("teamName"));
                                                 intent.putExtra(getString(R.string.role), doc.getString("role"));
                                                 intent.putExtra(getString(R.string.isAdmin), doc.getBoolean("isAdmin"));
+                                                intent.putExtra(getString(R.string.documentId), doc.getId());
                                                 // move to Activity
                                                 startActivity(intent);
                                             }

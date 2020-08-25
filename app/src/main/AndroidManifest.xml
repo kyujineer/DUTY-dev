@@ -12,6 +12,7 @@
         <activity android:name=".team.TeamCalendarActivity">
 
         </activity>
+        <activity android:name=".ScheduleRequestActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +23,6 @@
         <activity android:name=".menu.MenuActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
-
     </application>
 
 </manifest>

@@ -189,5 +189,8 @@ public class CalendarView extends LinearLayout {
     public SimpleDateFormat getChangeDateFormat() {
         return changeDateFormat;
     }
+    public int getCurrentMonth() {
+        return calendar.get(Calendar.MONTH);
+    }
 
 }

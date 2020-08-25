@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.duty.menu.MenuActivity;
 
@@ -23,12 +24,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         // 유저 생성
         user = new User(
-                intent.getStringExtra("ID"),
-                intent.getStringExtra("name"),
-                intent.getStringExtra("teamId"),
-                intent.getStringExtra("teamName"),
-                intent.getStringExtra("role"),
-                intent.getBooleanExtra("isAdmin",false)
+                intent.getStringExtra(getString(R.string.ID)),
+                intent.getStringExtra(getString(R.string.name)),
+                intent.getStringExtra(getString(R.string.teamId)),
+                intent.getStringExtra(getString(R.string.teamName)),
+                intent.getStringExtra(getString(R.string.role)),
+                intent.getBooleanExtra(getString(R.string.isAdmin),false),
+                intent.getStringExtra(getString(R.string.documentId))
         ); // 고칠예정
 
         super.onCreate(savedInstanceState);
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         // turn page to menu layout
         intent = new Intent(MainActivity.this, MenuActivity.class);
         intent.putExtra("user", user);
+        Log.e("*******main*****", user.getDocumentId());
         // move to Activity
         startActivity(intent);
 

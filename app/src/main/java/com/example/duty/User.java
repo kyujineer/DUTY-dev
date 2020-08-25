@@ -12,6 +12,7 @@ public class User implements Parcelable {
     private String teamName;
     private String role;
     private boolean isAdmin;
+    private String documentId;
 
     User() {
         this.ID = "Guest";
@@ -20,14 +21,16 @@ public class User implements Parcelable {
         this.teamName = "No Team Name";
         this.role = "Guest";
         this.isAdmin = false;
+        this.documentId = "";
     }
-    User(String ID, String name, String teamId, String teamName, String role, boolean isAdmin) {
+    User(String ID, String name, String teamId, String teamName, String role, boolean isAdmin, String documentId) {
         this.ID = ID;
         this.name = name;
         this.teamId = teamId;
         this.teamName = teamName;
         this.role = role;
         this.isAdmin = isAdmin;
+        this.documentId = documentId;
     }
 
     protected User(Parcel in) {
@@ -37,6 +40,7 @@ public class User implements Parcelable {
         teamName = in.readString();
         role = in.readString();
         isAdmin = in.readByte() != 0;
+        documentId = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -70,6 +74,7 @@ public class User implements Parcelable {
     public boolean isAdmin() {
         return this.isAdmin;
     }
+    public String getDocumentId() {return this.documentId;}
 
     @Override
     public int describeContents() {
@@ -84,5 +89,6 @@ public class User implements Parcelable {
         parcel.writeString(teamName);
         parcel.writeString(role);
         parcel.writeByte((byte) (isAdmin ? 1 : 0));
+        parcel.writeString(documentId);
     }
 }
