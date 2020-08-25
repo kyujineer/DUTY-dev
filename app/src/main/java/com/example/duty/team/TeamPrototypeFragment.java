@@ -26,6 +26,9 @@ public class TeamPrototypeFragment extends Fragment {
 
     private static final String ARG_USER = "argUser";
 
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
     private User user;
 
     // Variable declaration
@@ -50,13 +53,17 @@ public class TeamPrototypeFragment extends Fragment {
         if (getArguments() != null) {
             user = getArguments().getParcelable(ARG_USER);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+
+
         return inflater.inflate(R.layout.fragment_team_prototype, container, false);
+
     }
 
     @Override
@@ -74,6 +81,16 @@ public class TeamPrototypeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), ScheduleRequestActivity.class);
                 intent.putExtra("user", user);
                 // move to Activity
+                startActivity(intent);
+            }
+        });
+
+        btn_calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), TeamCalendarActivity.class);
+                intent.putExtra("user", user);
+
                 startActivity(intent);
             }
         });
