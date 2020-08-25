@@ -7,4 +7,8 @@
     <color name="colorSun">#FF0000</color>
     <color name="colorSat">#0000FF</color>
     <color name="interfaceColor">#C3FF5C9D</color>
+
+    <color name="text_gray_666666">#666666</color>
+
+
 </resources>
