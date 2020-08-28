@@ -38,6 +38,7 @@ public class CalendarView extends LinearLayout {
     private static final int MAX_CALENDAR_DATE = 42;
     Calendar calendar = Calendar.getInstance(Locale.KOREA);
     Context context;
+    ImageButton previous, next;
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy", Locale.KOREA);
     SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM", Locale.KOREA);
@@ -52,8 +53,7 @@ public class CalendarView extends LinearLayout {
     AlertDialog alertDialog;
 
     //근무자 표시
-    String [] List_Name = {"이반석", "정규진", "임주영"};
-
+    String[] List_Name = {"이반석", "정규진", "임주영"};
 
 
     public CalendarView(Context context) {
@@ -106,6 +106,30 @@ public class CalendarView extends LinearLayout {
                 alertDialog.show();
             }
         });
+
+        previous = (ImageButton) findViewById(R.id.btn_main_previousMonth);
+        next = (ImageButton) findViewById(R.id.btn_main_nextMonth);
+
+
+        //main calendar next,previous button on clicker
+        previous.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar.add(Calendar.MONTH, -1);
+                String previousDay = changeDateFormat.format(calendar.getTime());
+                SetUpCalendar();
+            }
+        });
+
+        next.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar.add(Calendar.MONTH, 1);
+                String nextDay = changeDateFormat.format(calendar.getTime());
+                SetUpCalendar();
+            }
+        });
+
         // End
         /* 원래 gridView onItem Click 시 띄우는 것 위치 해 있던 곳.. menu 2 로 이사갔음
 
@@ -147,14 +171,12 @@ public class CalendarView extends LinearLayout {
         */
 
 
-
     }
-
 
 
     // class start
     private void InitializeLayout() {
-        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.calendar_layout, this);
         dates.clear();
         CurrentDate = (TextView) view.findViewById(R.id.tv_date);
@@ -166,11 +188,11 @@ public class CalendarView extends LinearLayout {
         CurrentDate.setText(currentDay);
         dates.clear();
         Calendar monthCalendar = (Calendar) calendar.clone();
-        monthCalendar.set(Calendar.DAY_OF_MONTH,1);
+        monthCalendar.set(Calendar.DAY_OF_MONTH, 1);
         int FirstDayOfMonth = monthCalendar.get(Calendar.DAY_OF_WEEK) - 1; // 0부터 월요일 시작이라 빼주는 부분
         monthCalendar.add(Calendar.DAY_OF_MONTH, -FirstDayOfMonth);
 
-        while(dates.size() < MAX_CALENDAR_DATE) {
+        while (dates.size() < MAX_CALENDAR_DATE) {
             dates.add(monthCalendar.getTime());
             monthCalendar.add(Calendar.DAY_OF_MONTH, 1);
         }
@@ -183,12 +205,15 @@ public class CalendarView extends LinearLayout {
     public GridView getGridView() {
         return gridView;
     }
+
     public List<Date> getDates() {
         return dates;
     }
+
     public SimpleDateFormat getChangeDateFormat() {
         return changeDateFormat;
     }
+
     public int getCurrentMonth() {
         return calendar.get(Calendar.MONTH);
     }
